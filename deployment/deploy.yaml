@@ -1,0 +1,94 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: memorybox-cert
+  labels:
+    app: memorybox-cert
+spec:
+  selector:
+    matchLabels:
+      app: memorybox-cert
+  replicas: 1
+  template:
+    metadata:
+      name: memorybox-cert
+      labels:
+        app: memorybox-cert
+    spec:
+      containers:
+        - name: memberbox_cert
+          image: docker.io/ikujo/memory-cert:latest
+          imagePullPolicy: Always
+          env:
+            - name: PORT
+              value: "8080"
+          ports:
+            - name: port1
+              containerPort: 8081
+          resources:
+            requests:
+              cpu: 500m
+              memory: 512Mi
+            limits:
+              cpu: 500m
+              memory: 1024Mi
+---
+
+kind: ConfigMap
+apiVefeat_cicd-setting-filersion: v1
+metadata:
+  name: memorybox
+  namespace: ikujo
+data:
+  DB_SERVER: mysql
+  DB_PORT: "3306"
+  DB_NAME: "memory_box"
+
+---
+
+kind: Secret
+apiVersion: v1
+metadata:
+  name: memorybox
+  namespace: ikujo
+type: Opaque
+data:
+  DB_USERNAME: aWt1am8=
+  DB_PASSWORD: Mmt1ajAh
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: memorybox-cert
+spec:
+  type: ClusterIP
+  selector:
+    app: memorybox-cert
+  ports:
+    - name: memorybox-cert
+      port: 8080
+      targetPort: 8080
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: memorybox
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: memorybox-ikujo.165.192.105.60.nip.io
+      http:
+        paths:
+          - path: /(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: memorybox-cert
+                port: 
+                  number: 8080
