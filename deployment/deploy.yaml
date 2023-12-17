@@ -37,7 +37,7 @@ spec:
 kind: ConfigMap
 apiVefeat_cicd-setting-filersion: v1
 metadata:
-  name: memorybox
+  name: memorybox-cert
   namespace: ikujo
 data:
   DB_SERVER: mysql
@@ -49,7 +49,7 @@ data:
 kind: Secret
 apiVersion: v1
 metadata:
-  name: memorybox
+  name: memorybox-cert
   namespace: ikujo
 type: Opaque
 data:
