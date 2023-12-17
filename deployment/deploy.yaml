@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: memberbox_cert
-          image: docker.io/ikujo/memory-cert:1.0.0
+          image: docker.io/hyeonkyo/memory-cert:1.0.0
           imagePullPolicy: Always
           env:
             - name: PORT
