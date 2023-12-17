@@ -1,6 +1,6 @@
 package com.memorybox;
 
-import com.memorybox.controller.CertificationController;
+import com.memorybox.service.UserIdService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,10 +14,10 @@ public class MemoryboxCertApplication {
     }
 
     @Bean
-    public CommandLineRunner run(CertificationController certificationController) {
+    public CommandLineRunner run(UserIdService userIdService) {
         return (String[] args) -> {
             for (int userId = 1; userId <= 10; userId++) {
-                certificationController.addUserId(userId);
+                userIdService.addUserId(userId);
             }
         };
     }
