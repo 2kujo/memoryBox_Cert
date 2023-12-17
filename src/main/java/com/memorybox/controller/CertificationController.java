@@ -8,7 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import static com.memorybox.util.UserIdCookieUtil.MEMORYBOX_SPECIAL_USER_COOKIE;
@@ -20,7 +20,7 @@ public class CertificationController {
     private final UserIdService userIdService;
     private final UserIdCookieUtil cookieUtil;
 
-    @PostMapping("/cert")
+    @GetMapping("/cert")
     public ResponseEntity<?> createCert(@CookieValue(MEMORYBOX_SPECIAL_USER_COOKIE) String userId) {
         if (StringUtils.isBlank(userId)) {
             userId = userIdService.getUserId();
@@ -32,7 +32,7 @@ public class CertificationController {
                 .build();
     }
 
-    @PostMapping("/special-cert")
+    @GetMapping("/special-cert")
     public ResponseEntity<?> createSpecialCert() {
         String userId = userIdService.getSpecialUserId();
         ResponseCookie userIdCookie = cookieUtil.makeUserIdCookie(userId, true);
