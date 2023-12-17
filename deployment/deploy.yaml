@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: memorybox-cert
-          image: docker.io/hyeonkyo/memory-cert:1.0.0
+          image: docker.io/hyeonkyo/memorybox-cert:1.0.0
           imagePullPolicy: Always
           env:
             - name: PORT
