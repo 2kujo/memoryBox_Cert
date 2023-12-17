@@ -14,11 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CertificationController {
 
-    private final UserIdService userIdService;
     private static final long maxAgeSeconds = 60 * 60 * 24 * 30L;
+    public static final String MEMORYBOX_SPECIAL_USER_COOKIE = "memorybox-special-user";
+    public static final String MEMORYBOX_USER_ID_COOKIE = "memorybox-user-id";
+
+    private final UserIdService userIdService;
 
     @GetMapping("/cert")
-    public ResponseEntity<?> getCert(@CookieValue("memorybox-cert-cookie") String userId) {
+    public ResponseEntity<?> getCert(@CookieValue(MEMORYBOX_SPECIAL_USER_COOKIE) String userId) {
         if (StringUtils.isBlank(userId)) {
             userId = userIdService.getUserId();
         }
@@ -28,8 +31,27 @@ public class CertificationController {
                 .build();
     }
 
+    @GetMapping("/special-cert")
+    public ResponseEntity<?> getSpecialCert() {
+        String userId = userIdService.getSpecialUserId();
+        ResponseCookie userIdCookie = makeSpecialUserIdCookie(userId);
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE, userIdCookie.toString())
+                .build();
+    }
+
     private ResponseCookie makeUserIdCookie(String userId) {
-        return ResponseCookie.from("memorybox-userId", userId)
+        return ResponseCookie.from(MEMORYBOX_USER_ID_COOKIE, userId)
+                .httpOnly(true)
+                .secure(true)
+                .path("/")
+                .maxAge(maxAgeSeconds)
+                .build();
+    }
+
+    private ResponseCookie makeSpecialUserIdCookie(String specialUserId) {
+        return ResponseCookie.from(MEMORYBOX_SPECIAL_USER_COOKIE, specialUserId)
                 .httpOnly(true)
                 .secure(true)
                 .path("/")
