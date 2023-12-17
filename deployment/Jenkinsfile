@@ -85,7 +85,7 @@ podTemplate(
 
 			stage( "Deploy to Cluster" ) {
 				container("kubectl") {
-					sh "kubectl apply -f ${manifest} -n ${namespace}"
+					sh "kubectl apply -f ${manifest} -n ${namespace} --validate=false"
 					sh "sleep 5"
 				}
 			}
