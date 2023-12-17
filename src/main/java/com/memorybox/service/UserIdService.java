@@ -4,12 +4,12 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.concurrent.ConcurrentLinkedDeque;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 @Service
 public class UserIdService {
-    private final ConcurrentLinkedDeque<Integer> userIdQueue = new ConcurrentLinkedDeque<>();
-    private final ConcurrentLinkedDeque<Integer> specialIdQueue = new ConcurrentLinkedDeque<>();
+    private final ConcurrentLinkedQueue<Integer> userIdQueue = new ConcurrentLinkedQueue<>();
+    private final ConcurrentLinkedQueue<Integer> specialIdQueue = new ConcurrentLinkedQueue<>();
 
     @PostConstruct
     private void init() {
@@ -20,13 +20,13 @@ public class UserIdService {
     }
 
     public String getUserId() {
-        Integer userId = userIdQueue.pop();
+        Integer userId = userIdQueue.poll();
         userIdQueue.offer(userId);
         return userId.toString();
     }
 
     public String getSpecialUserId() {
-        Integer userId = specialIdQueue.pop();
+        Integer userId = specialIdQueue.poll();
         specialIdQueue.offer(userId);
         return userId.toString();
     }
