@@ -27,6 +27,10 @@ public class CertificationController {
                 .build();
     }
 
+    public void addUserId(int userId) {
+        userIdQueue.offer(userId);
+    }
+
     private String getUserId() {
         return userIdQueue.pop().toString();
     }
@@ -40,14 +44,3 @@ public class CertificationController {
                 .build();
     }
 }
-
-/*
-* 1. 프론트 특정 URL 접속 -> 기념일 발생 유저 번호의 쿠키를 발급해주는 페이지
-* 2. 인증 서버에 인증 요청 시 해당 쿠키 확인
-*  - 있으면 Special 유저 번호를 memorybox-user-id 쿠키에 담아주기
-*  - 없으면 Queue에서 꺼낸 유저 번호를 쿠키에 담아주기
-*
-* 쿠키가 있으면 그 쿠키 ID리턴 -> 이미 들어온 사람들 재활용
-* 없으면 쿠키생성해주고 리턴 -> 첫 발급
-*
-* */
