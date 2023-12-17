@@ -16,7 +16,7 @@ spec:
         app: memorybox-cert
     spec:
       containers:
-        - name: memberbox_cert
+        - name: memorybox-cert
           image: docker.io/hyeonkyo/memory-cert:1.0.0
           imagePullPolicy: Always
           env:
