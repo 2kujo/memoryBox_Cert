@@ -87,7 +87,7 @@ podTemplate(
 				container("kubectl") {
 				    sh "pwd"
 				    sh "ls -al"
-					sh "kubectl apply -f ${manifest} -n ${namespace} --validate=false"
+					sh "kubectl apply -f ${manifest} -n ${namespace}"
 					sh "sleep 5"
 				}
 			}
