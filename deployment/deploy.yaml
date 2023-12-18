@@ -85,7 +85,7 @@ spec:
     - host: memorybox-ikujo.165.192.105.60.nip.io
       http:
         paths:
-          - path: /(.*)
+          - path: /cert
             pathType: Prefix
             backend:
               service:
