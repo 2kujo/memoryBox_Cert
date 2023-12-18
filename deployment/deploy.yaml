@@ -35,7 +35,7 @@ spec:
 ---
 
 kind: ConfigMap
-apiVefeat_cicd-setting-filersion: v1
+apiVersion: v1
 metadata:
   name: memorybox-cert
   namespace: ikujo
