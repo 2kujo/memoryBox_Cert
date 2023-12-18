@@ -1,5 +1,5 @@
-apiVersion: apps/v1
 kind: Deployment
+apiVersion: apps/v1
 metadata:
   name: memorybox-cert
   labels:
@@ -85,7 +85,7 @@ spec:
     - host: memorybox-ikujo.165.192.105.60.nip.io
       http:
         paths:
-          - path: /(.*)
+          - path: /cert
             pathType: Prefix
             backend:
               service:
