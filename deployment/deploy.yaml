@@ -67,35 +67,5 @@ spec:
     app: memorybox-cert
   ports:
     - name: memorybox-cert
-      port: 8081
+      port: 8080
       targetPort: 8080
-
----
-
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: memorybox
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-spec:
-  ingressClassName: nginx
-  rules:
-    - host: memorybox-ikujo.165.192.105.60.nip.io
-      http:
-        paths:
-          - path: /cashbox
-            pathType: Prefix
-            backend:
-              service:
-                name: memorybox-main
-                port:
-                  number: 8080
-          - path: /cert
-            pathType: Prefix
-            backend:
-              service:
-                name: memorybox-cert
-                port:
-                  number: 8081
