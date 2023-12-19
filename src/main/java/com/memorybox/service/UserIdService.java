@@ -1,34 +1,42 @@
 package com.memorybox.service;
 
+import com.memorybox.domain.user.entity.User;
+import com.memorybox.domain.user.repository.UserRepository;
 import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+@RequiredArgsConstructor
 @Service
 public class UserIdService {
-    private final ConcurrentLinkedQueue<Integer> userIdQueue = new ConcurrentLinkedQueue<>();
-    private final ConcurrentLinkedQueue<Integer> specialIdQueue = new ConcurrentLinkedQueue<>();
+    private static final long START_REGISTERED_USER_NUM = 1L;
+    private static final long END_REGISTERED_USER_NUM = 10L;
+
+    private final ConcurrentLinkedQueue<Long> userIdQueue = new ConcurrentLinkedQueue<>();
+
+    private final DummyDataService dummyDataService;
+    private final UserRepository userRepository;
+
 
     @PostConstruct
     private void init() {
-        for (int userId = 1; userId <= 10; userId++) {
+        //더미 유저 ID값을 Queue에 넣어주기
+        for (long userId = START_REGISTERED_USER_NUM; userId <= END_REGISTERED_USER_NUM; userId++) {
             userIdQueue.offer(userId);
         }
-        specialIdQueue.addAll(List.of(111, 112, 113));
     }
 
+    @Transactional
     public String getUserId() {
-        Integer userId = userIdQueue.poll();
-        userIdQueue.offer(userId);
-        return userId.toString();
-    }
-
-    public String getSpecialUserId() {
-        Integer userId = specialIdQueue.poll();
-        specialIdQueue.offer(userId);
-        return userId.toString();
+        if (userIdQueue.isEmpty()) {
+            Long userId = userRepository.save(new User()).getId();
+            dummyDataService.saveDummyData(userId);
+            return userId.toString();
+        }
+        return userIdQueue.poll().toString();
     }
 
 }
