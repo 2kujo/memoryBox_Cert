@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.memorybox.util.UserIdCookieUtil.MEMORYBOX_SPECIAL_USER_COOKIE;
+import static com.memorybox.util.UserIdCookieUtil.MEMORYBOX_USER_ID_COOKIE;
 
 @RequiredArgsConstructor
 @RestController
@@ -21,11 +21,9 @@ public class CertificationController {
     private final UserIdCookieUtil cookieUtil;
 
     @GetMapping("/cert")
-    public ResponseEntity<?> createCert(@CookieValue(MEMORYBOX_SPECIAL_USER_COOKIE) String userId) {
-        if (StringUtils.isBlank(userId)) {
-            userId = userIdService.getUserId();
-        }
-        ResponseCookie userIdCookie = cookieUtil.makeUserIdCookie(userId, false);
+    public ResponseEntity<?> createCert() {
+        String userId = userIdService.getUserId();
+        ResponseCookie userIdCookie = cookieUtil.makeUserIdCookie(userId);
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.SET_COOKIE, userIdCookie.toString())
@@ -33,13 +31,24 @@ public class CertificationController {
     }
 
     @GetMapping("/special-cert")
-    public ResponseEntity<?> createSpecialCert() {
-        String userId = userIdService.getSpecialUserId();
-        ResponseCookie userIdCookie = cookieUtil.makeUserIdCookie(userId, true);
+    public ResponseEntity<?> createSpecialCert(@CookieValue(value = MEMORYBOX_USER_ID_COOKIE, required = false) String userId) {
+        ResponseCookie userIdCookie = null;
+        if (StringUtils.isBlank(userId)) {
+            userId = userIdService.getUserId();
+            userIdCookie = cookieUtil.makeUserIdCookie(userId);
+        }
+        ResponseCookie specialCookie = cookieUtil.makeSpecialCookie();
 
-        return ResponseEntity.ok()
-                .header(HttpHeaders.SET_COOKIE, userIdCookie.toString())
-                .build();
+        return makeResponseEntity(specialCookie, userIdCookie);
+    }
+
+    private ResponseEntity<?> makeResponseEntity(ResponseCookie specialCookie, ResponseCookie userIdCookie) {
+        ResponseEntity.BodyBuilder builder = ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE, specialCookie.toString());
+        if (userIdCookie != null) {
+            builder.header(HttpHeaders.SET_COOKIE, userIdCookie.toString());
+        }
+        return builder.build();
     }
 
 }

@@ -3,31 +3,31 @@ package com.memorybox.service;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 @Service
 public class UserIdService {
-    private final ConcurrentLinkedQueue<Integer> userIdQueue = new ConcurrentLinkedQueue<>();
-    private final ConcurrentLinkedQueue<Integer> specialIdQueue = new ConcurrentLinkedQueue<>();
+    private static final long START_REGISTERED_USER_NUM = 1L;
+    private static final long END_REGISTERED_USER_NUM = 10L;
+
+    private final ConcurrentLinkedQueue<Long> userIdQueue = new ConcurrentLinkedQueue<>();
 
     @PostConstruct
     private void init() {
-        for (int userId = 1; userId <= 10; userId++) {
+        for (long userId = START_REGISTERED_USER_NUM; userId <= END_REGISTERED_USER_NUM; userId++) {
             userIdQueue.offer(userId);
         }
-        specialIdQueue.addAll(List.of(111, 112, 113));
     }
 
     public String getUserId() {
-        Integer userId = userIdQueue.poll();
-        userIdQueue.offer(userId);
-        return userId.toString();
-    }
+        Long userId;
+        if (userIdQueue.isEmpty()) {
+            //TODO 새로운 User 및 더미데이터 생성 후 새로운 UserId 리턴 로직 필요
+            userId = 0L;
 
-    public String getSpecialUserId() {
-        Integer userId = specialIdQueue.poll();
-        specialIdQueue.offer(userId);
+        } else {
+            userId = userIdQueue.poll();
+        }
         return userId.toString();
     }
 
