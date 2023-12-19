@@ -40,7 +40,7 @@ metadata:
   name: memorybox-cert
   namespace: ikujo
 data:
-  DB_SERVER: svc-mysql
+  DB_SERVER: svc-mysql-headless
   DB_PORT: "3306"
   DB_NAME: "memory_box"
 
