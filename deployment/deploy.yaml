@@ -32,6 +32,15 @@ spec:
             limits:
               cpu: 500m
               memory: 1024Mi
+          volumeMounts:
+            - name: image-data
+              mountPath: /root/data
+              readOnly: false
+      volumes:
+        - name: image-data
+          persistentVolumeClaim:
+            claimName: memory-box
+            readOnly: false
 ---
 
 kind: ConfigMap
@@ -69,3 +78,4 @@ spec:
     - name: memorybox-cert
       port: 8080
       targetPort: 8080
+
