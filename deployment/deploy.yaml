@@ -15,6 +15,8 @@ spec:
       labels:
         app: memorybox-cert
     spec:
+      imagePullSecrets:
+      - name: dockerhub
       containers:
         - name: memorybox-cert
           image: docker.io/hyeonkyo/memorybox-cert:1.0.0
