@@ -40,7 +40,6 @@ public class DummyDataService {
         //========= 더미데이터 ============
         String[] accountNums = {"21702448796571", "21702479654744", "21702446796255"};
         int[] bals = {6834000, 535000, 8865767};
-        String[] receivedAccs = {"6762050469586037801", "3557490054400654", "6334358568642629"};
         String[] productNames = {"특별한 적금", "특별한 적금", "특별한 적금"};
         LocalDate[] startDates = {
                 LocalDate.of(2023, 1, 22),
@@ -58,7 +57,6 @@ public class DummyDataService {
                     .userId(userId)
                     .accountNum(accountNums[i])
                     .balance(bals[i])
-                    .receivedAccount(receivedAccs[i])
                     .productName(productNames[i])
                     .startDate(startDates[i])
                     .maturityDate(maturityDates[i])

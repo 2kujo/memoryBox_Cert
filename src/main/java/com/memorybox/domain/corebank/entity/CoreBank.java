@@ -25,8 +25,6 @@ public class CoreBank {
 
     private int balance;
 
-    private String receivedAccount;
-
     private String productName;
 
     private LocalDate startDate;
@@ -37,13 +35,12 @@ public class CoreBank {
     private LocalDateTime createdAt;
 
     @Builder
-    public CoreBank(Long id, String accountNum, int balance, String receivedAccount, String productName,
+    public CoreBank(Long id, String accountNum, int balance, String productName,
                     LocalDate startDate, LocalDate maturityDate, LocalDateTime createdAt, long userId){
         this.id = id;
         this.userId = userId;
         this.accountNum = accountNum;
         this.balance = balance;
-        this.receivedAccount = receivedAccount;
         this.productName = productName;
         this.startDate = startDate;
         this.maturityDate = maturityDate;
