@@ -1,34 +1,36 @@
 package com.memorybox.domain.memory.entity;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@EntityListeners(AuditingEntityListener.class)
 @Getter
-@NoArgsConstructor
-@Table(name = "memory")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Memory {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "cash_box_id")
+    @Column
     private long cashBoxId;
 
-    @Column(name = "title")
+    @Column
     private String title;
 
-    @Column(name = "content")
+    @Column
     private String content;
 
-    @Column(name = "deposit_amount")
+    @Column
     private int depositAmount;
 
     @ElementCollection(fetch = FetchType.EAGER)
@@ -38,7 +40,7 @@ public class Memory {
     private List<Image> images;
 
     @CreatedDate
-    @Column(name = "created_at", updatable = false)
+    @Column(updatable = false)
     private LocalDateTime createdAt;
 
     @Builder

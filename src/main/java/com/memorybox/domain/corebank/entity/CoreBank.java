@@ -46,9 +46,8 @@ public class CoreBank {
     private boolean maturityEnabled;
 
     @Builder
-    public CoreBank(Long id, String accountNum, int balance, String productName, LocalDate startDate,
-                    LocalDate maturityDate, LocalDateTime createdAt, long userId, boolean maturityEnabled){
-        this.id = id;
+    public CoreBank(String accountNum, int balance, String productName, LocalDate startDate, LocalDate maturityDate,
+                    LocalDateTime createdAt, long userId, boolean maturityEnabled){
         this.userId = userId;
         this.accountNum = accountNum;
         this.balance = balance;

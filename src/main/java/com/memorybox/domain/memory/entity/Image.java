@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Embeddable
 public class Image {
-    @Column(name = "image_name")
+    @Column
     private String imageName;
 }

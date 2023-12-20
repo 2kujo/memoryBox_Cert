@@ -12,12 +12,14 @@ public class UserIdCookieUtil {
     public ResponseCookie makeUserIdCookie(String userId) {
         return ResponseCookie.from(MEMORYBOX_USER_ID_COOKIE, userId)
                 .maxAge(maxAgeSeconds)
+                .sameSite("None")
                 .build();
     }
 
     public ResponseCookie makeSpecialCookie() {
         return ResponseCookie.from(MEMORYBOX_SPECIAL_COOKIE, "special-cookie")
                 .maxAge(maxAgeSeconds)
+                .sameSite("None")
                 .build();
     }
 }
