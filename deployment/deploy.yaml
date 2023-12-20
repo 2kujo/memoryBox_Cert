@@ -81,7 +81,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: memorybox-ikujo.165.192.105.60.nip.io
+    - host: memorybox-ikujo-back.165.192.105.60.nip.io
       http:
         paths:
           - path: /(.*)
