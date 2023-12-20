@@ -9,6 +9,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Embeddable
 public class Image {
-    @Column
+    @Column(name = "image_name")
     private String imageName;
 }

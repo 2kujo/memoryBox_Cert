@@ -20,41 +20,41 @@ public class CashBox {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    private Long userId;
+    @Column(name = "user_id")
+    private long userId;
 
-    @Column
+    @Column(name = "name")
     private String name;
 
-    @Column
+    @Column(name = "description")
     private String description;
 
-    @Column
+    @Column(name = "thumbnail")
     private String thumbnail;
 
-    @Column
+    @Column(name = "account_num")
     private String accountNum;
 
-    @Column
+    @Column(name = "balance")
     int balance;
 
-    @Column
+    @Column(name = "product_name")
     private String productName;
 
-    @Column
+    @Column(name = "core_bank_id")
     private long coreBankId;
 
     @CreatedDate
-    @Column
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    @Column
+    @Column(name = "start_date")
     private LocalDate startDate;
 
-    @Column
-    private Boolean maturityEnabled;
+    @Column(name = "maturity_enabled")
+    private boolean maturityEnabled;
 
-    @Column
+    @Column(name = "maturity_date")
     private LocalDate maturityDate;
 
     @Builder

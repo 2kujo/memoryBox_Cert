@@ -18,16 +18,16 @@ public class Memory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(name = "cash_box_id")
     private long cashBoxId;
 
-    @Column
+    @Column(name = "title")
     private String title;
 
-    @Column
+    @Column(name = "content")
     private String content;
 
-    @Column
+    @Column(name = "deposit_amount")
     private int depositAmount;
 
     @ElementCollection(fetch = FetchType.EAGER)
@@ -37,7 +37,7 @@ public class Memory {
     private List<Image> images;
 
     @CreatedDate
-    @Column(updatable = false)
+    @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
     @Builder

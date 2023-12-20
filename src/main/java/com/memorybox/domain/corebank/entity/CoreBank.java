@@ -19,19 +19,26 @@ public class CoreBank {
     @Column(name="id")
     private Long id;
 
+    @Column(name = "user_id")
     private long userId;
 
+    @Column(name = "account_num")
     private String accountNum;
 
+    @Column(name = "balance")
     private int balance;
 
+    @Column(name = "product_name")
     private String productName;
 
+    @Column(name = "start_date")
     private LocalDate startDate;
 
+    @Column(name = "maturity_date")
     private LocalDate maturityDate;
 
     @CreationTimestamp
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     @Column(name = "maturity_enabled")
