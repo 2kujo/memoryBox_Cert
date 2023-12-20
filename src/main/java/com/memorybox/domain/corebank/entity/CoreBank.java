@@ -34,9 +34,12 @@ public class CoreBank {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
+    @Column(name = "maturity_enabled")
+    private boolean maturityEnabled;
+
     @Builder
-    public CoreBank(Long id, String accountNum, int balance, String productName,
-                    LocalDate startDate, LocalDate maturityDate, LocalDateTime createdAt, long userId){
+    public CoreBank(Long id, String accountNum, int balance, String productName, LocalDate startDate,
+                    LocalDate maturityDate, LocalDateTime createdAt, long userId, boolean maturityEnabled){
         this.id = id;
         this.userId = userId;
         this.accountNum = accountNum;
@@ -45,6 +48,7 @@ public class CoreBank {
         this.startDate = startDate;
         this.maturityDate = maturityDate;
         this.createdAt = createdAt;
+        this.maturityEnabled = maturityEnabled;
     }
 
     public int updateBalance(int money){
