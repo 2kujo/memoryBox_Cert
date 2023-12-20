@@ -24,9 +24,9 @@ spec:
               value: "8080"
           envFrom:
             - configMapRef:
-                name: memorybox-cert-cm
+                name: memorybox-cm
             - secretRef:
-                name: memorybox-cert-secret
+                name: memorybox-secret
           ports:
             - name: port1
               containerPort: 8081
@@ -37,27 +37,6 @@ spec:
             limits:
               cpu: 500m
               memory: 1024Mi
----
-
-kind: ConfigMap
-apiVersion: v1
-metadata:
-  name: memorybox-cert-cm
-data:
-  DB_SERVER: svc-mysql
-  DB_PORT: "3306"
-  DB_NAME: "memory_box"
-
----
-
-kind: Secret
-apiVersion: v1
-metadata:
-  name: memorybox-cert-secret
-type: Opaque
-stringData:
-  DB_USERNAME: aWt1am8=
-  DB_PASSWORD: Mmt1ajAh
 
 ---
 
