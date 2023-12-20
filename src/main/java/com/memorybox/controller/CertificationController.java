@@ -31,10 +31,10 @@ public class CertificationController {
     }
 
     @GetMapping("/special-cert")
-    public ResponseEntity<?> createSpecialCert(@CookieValue(value = MEMORYBOX_USER_ID_COOKIE, required = false) String userId) {
+    public ResponseEntity<?> createSpecialCert(@CookieValue(value = MEMORYBOX_USER_ID_COOKIE, required = false) String userIdCookieString) {
         ResponseCookie userIdCookie = null;
-        if (StringUtils.isBlank(userId)) {
-            userId = userIdService.getUserId();
+        if (StringUtils.isBlank(userIdCookieString)) {
+            String userId = userIdService.getUserId();
             userIdCookie = cookieUtil.makeUserIdCookie(userId);
         }
         ResponseCookie specialCookie = cookieUtil.makeSpecialCookie();

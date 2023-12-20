@@ -21,45 +21,48 @@ public class CashBox {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id")
-    private long userId;
-
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "description")
-    private String description;
-
-    @Column(name = "thumbnail")
-    private String thumbnail;
-
-    @Column(name = "account_num")
-    private String accountNum;
-
-    @Column(name = "balance")
-    private int balance;
-
-    @Column(name = "product_name")
-    private String productName;
-
-    @Column(name = "core_bank_id")
+    @Column
     private long coreBankId;
 
+    @Column
+    private long userId;
+
+    @Column
+    private String name;
+
+    @Column
+    private String description;
+
+    @Column
+    private String thumbnail;
+
     @CreatedDate
-    @Column(name = "created_at")
+    @Column
     private LocalDateTime createdAt;
 
-    @Column(name = "start_date")
+    @Column
+    private String accountNum;
+
+    @Column
+    private int balance;
+
+    @Column
+    private String productName;
+
+    @Column
     private LocalDate startDate;
 
-    @Column(name = "maturity_enabled")
-    private boolean maturityEnabled;
-
-    @Column(name = "maturity_date")
+    @Column
     private LocalDate maturityDate;
 
+    @Column
+    private boolean maturityEnabled;
+
+    @Column(name = "checked_maturity_read")
+    private boolean checkedMaturityRead;
+
     @Builder
-    public CashBox(Long userId, String name, String description, String thumbnail, String accountNum, int balance, String productName, long coreBankId, LocalDateTime createdAt, LocalDate startDate, Boolean maturityEnabled, LocalDate maturityDate) {
+    public CashBox(long userId, String name, String description, String thumbnail, LocalDateTime createdAt, long coreBankId, String accountNum, int balance, String productName, LocalDate startDate, LocalDate maturityDate, boolean maturityEnabled, boolean checkedMaturityRead) {
         this.userId = userId;
         this.name = name;
         this.description = description;
@@ -72,5 +75,6 @@ public class CashBox {
         this.startDate = startDate;
         this.maturityEnabled = maturityEnabled;
         this.maturityDate = maturityDate;
+        this.checkedMaturityRead = checkedMaturityRead;
     }
 }
