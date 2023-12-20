@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
+@Table(name = "core_bank")
 @Entity
 public class CoreBank {
 

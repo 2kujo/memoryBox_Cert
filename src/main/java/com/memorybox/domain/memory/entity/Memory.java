@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 @Getter
 @NoArgsConstructor
+@Table(name = "memory")
 @Entity
 public class Memory {
     @Id
