@@ -36,7 +36,7 @@ public class CashBox {
     private String accountNum;
 
     @Column(name = "balance")
-    int balance;
+    private int balance;
 
     @Column(name = "product_name")
     private String productName;
