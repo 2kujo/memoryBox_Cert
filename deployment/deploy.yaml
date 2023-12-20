@@ -22,6 +22,11 @@ spec:
           env:
             - name: PORT
               value: "8080"
+          envFrom:
+            - configMapRef:
+                name: memorybox-cert-cm
+            - secretRef:
+                name: memorybox-cert-secret
           ports:
             - name: port1
               containerPort: 8081
@@ -37,8 +42,7 @@ spec:
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: memorybox-cert
-  namespace: ikujo
+  name: memorybox-cert-cm
 data:
   DB_SERVER: svc-mysql
   DB_PORT: "3306"
@@ -49,12 +53,12 @@ data:
 kind: Secret
 apiVersion: v1
 metadata:
-  name: memorybox-cert
-  namespace: ikujo
+  name: memorybox-cert-secret
 type: Opaque
-data:
+stringData:
   DB_USERNAME: aWt1am8=
   DB_PASSWORD: Mmt1ajAh
+
 ---
 
 apiVersion: v1
@@ -71,6 +75,7 @@ spec:
       targetPort: 8080
 
 ---
+
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
