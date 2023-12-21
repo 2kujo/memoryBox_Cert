@@ -12,6 +12,8 @@ public class UserIdCookieUtil {
     public ResponseCookie makeUserIdCookie(String userId) {
         return ResponseCookie.from(MEMORYBOX_USER_ID_COOKIE, userId)
                 .maxAge(maxAgeSeconds)
+                .httpOnly(true)
+                .secure(true)
                 .sameSite("None")
                 .build();
     }
@@ -19,6 +21,8 @@ public class UserIdCookieUtil {
     public ResponseCookie makeSpecialCookie() {
         return ResponseCookie.from(MEMORYBOX_SPECIAL_COOKIE, "special-cookie")
                 .maxAge(maxAgeSeconds)
+                .httpOnly(true)
+                .secure(true)
                 .sameSite("None")
                 .build();
     }
