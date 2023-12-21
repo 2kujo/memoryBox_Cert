@@ -21,6 +21,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins(
                         "http://localhost:80",
+                        "http://localhost:8080",
                         "http://localhost:5173",
                         "http://memorybox-fe:8080",
                         "http://memorybox-ikujo.165.192.105.60.nip.io")
