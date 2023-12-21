@@ -11,6 +11,7 @@ public class UserIdCookieUtil {
 
     public ResponseCookie makeUserIdCookie(String userId) {
         return ResponseCookie.from(MEMORYBOX_USER_ID_COOKIE, userId)
+                .domain(".165.192.105.60.nip.io")
                 .maxAge(maxAgeSeconds)
                 .httpOnly(true)
                 .secure(true)
@@ -21,6 +22,7 @@ public class UserIdCookieUtil {
     public ResponseCookie makeSpecialCookie() {
         return ResponseCookie.from(MEMORYBOX_SPECIAL_COOKIE, "special-cookie")
                 .maxAge(maxAgeSeconds)
+                .domain(".165.192.105.60.nip.io")
                 .httpOnly(true)
                 .secure(true)
                 .sameSite("None")
