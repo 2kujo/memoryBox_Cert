@@ -1,6 +1,7 @@
 package com.memorybox.controller;
 
 import com.memorybox.common.resolver.CertUserId;
+import com.memorybox.dto.response.UserIdResponseDto;
 import com.memorybox.service.UserIdService;
 import com.memorybox.util.UserIdCookieUtil;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class CertificationController {
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.SET_COOKIE, userIdCookie.toString())
-                .body(userId);
+                .body(new UserIdResponseDto(userId));
     }
 
     @GetMapping("/special-cert")
@@ -45,7 +46,7 @@ public class CertificationController {
         if (userIdCookie != null) {
             builder.header(HttpHeaders.SET_COOKIE, userIdCookie.toString());
         }
-        return builder.body(userId);
+        return builder.body(new UserIdResponseDto(userId));
     }
 
 }
