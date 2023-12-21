@@ -13,7 +13,6 @@ public class UserIdCookieUtil {
         return ResponseCookie.from(MEMORYBOX_USER_ID_COOKIE, userId)
                 .domain(".165.192.105.60.nip.io")
                 .maxAge(maxAgeSeconds)
-                .secure(true)
                 .sameSite("None")
                 .build();
     }
@@ -22,7 +21,6 @@ public class UserIdCookieUtil {
         return ResponseCookie.from(MEMORYBOX_SPECIAL_COOKIE, "special-cookie")
                 .maxAge(maxAgeSeconds)
                 .domain(".165.192.105.60.nip.io")
-                .secure(true)
                 .sameSite("None")
                 .build();
     }

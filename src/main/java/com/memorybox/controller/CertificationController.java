@@ -24,7 +24,7 @@ public class CertificationController {
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.SET_COOKIE, userIdCookie.toString())
-                .build();
+                .body(userId);
     }
 
     @GetMapping("/special-cert")
@@ -33,18 +33,19 @@ public class CertificationController {
         if (userId == 0L) {
             String userIdString = userIdService.getUserId();
             userIdCookie = cookieUtil.makeUserIdCookie(userIdString);
+            userId = Long.parseLong(userIdString);
         }
         ResponseCookie specialCookie = cookieUtil.makeSpecialCookie();
-        return makeResponseEntity(specialCookie, userIdCookie);
+        return makeResponseEntity(userId, specialCookie, userIdCookie);
     }
 
-    private ResponseEntity<?> makeResponseEntity(ResponseCookie specialCookie, ResponseCookie userIdCookie) {
+    private ResponseEntity<?> makeResponseEntity(long userId, ResponseCookie specialCookie, ResponseCookie userIdCookie) {
         ResponseEntity.BodyBuilder builder = ResponseEntity.ok()
                 .header(HttpHeaders.SET_COOKIE, specialCookie.toString());
         if (userIdCookie != null) {
             builder.header(HttpHeaders.SET_COOKIE, userIdCookie.toString());
         }
-        return builder.build();
+        return builder.body(userId);
     }
 
 }
