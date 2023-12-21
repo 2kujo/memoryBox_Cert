@@ -1,17 +1,14 @@
 package com.memorybox.controller;
 
+import com.memorybox.common.resolver.CertUserId;
 import com.memorybox.service.UserIdService;
 import com.memorybox.util.UserIdCookieUtil;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import static com.memorybox.util.UserIdCookieUtil.MEMORYBOX_USER_ID_COOKIE;
 
 @RequiredArgsConstructor
 @RestController
@@ -31,14 +28,13 @@ public class CertificationController {
     }
 
     @GetMapping("/special-cert")
-    public ResponseEntity<?> createSpecialCert(@CookieValue(value = MEMORYBOX_USER_ID_COOKIE, required = false) String userIdCookieString) {
+    public ResponseEntity<?> createSpecialCert(@CertUserId(required = false) long userId) {
         ResponseCookie userIdCookie = null;
-        if (StringUtils.isBlank(userIdCookieString)) {
-            String userId = userIdService.getUserId();
-            userIdCookie = cookieUtil.makeUserIdCookie(userId);
+        if (userId == 0L) {
+            String userIdString = userIdService.getUserId();
+            userIdCookie = cookieUtil.makeUserIdCookie(userIdString);
         }
         ResponseCookie specialCookie = cookieUtil.makeSpecialCookie();
-
         return makeResponseEntity(specialCookie, userIdCookie);
     }
 
