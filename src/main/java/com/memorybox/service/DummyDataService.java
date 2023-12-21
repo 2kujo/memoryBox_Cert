@@ -22,6 +22,10 @@ public class DummyDataService {
     public static final int N_CASH_BOX = 3;
     public static final int N_CORE_BANK = 3;
 
+    public static final String JIYUN_DIR = "/jiyun/";
+    public static final String JINA_DIR = "/jina/";
+    public static final String HYEONKYO_DIR = "/hyeonkyo/";
+
     private final CashBoxRepository cashBoxRepository;
     private final CoreBankRepository coreBankRepository;
     private final MemoryRepository memoryRepository;
@@ -180,16 +184,45 @@ public class DummyDataService {
                     150_000, 60_000, 70_000, 120_000, 70_000, 50_000,
                 }
         };
-        List[] images = {List.of("1"), List.of("2")};
+        List[][] images = {
+                {
+                        List.of(JIYUN_DIR.concat("jy1.png"), JIYUN_DIR.concat("jy2.png"), JIYUN_DIR.concat("jy3.png")),
+                        List.of(JIYUN_DIR.concat("jy4.png")),
+                        List.of(JIYUN_DIR.concat("jy5.png"), JIYUN_DIR.concat("jy6.png")),
+                        List.of(JIYUN_DIR.concat("jy7.png"), JIYUN_DIR.concat("jy8.png")),
+                        List.of(JIYUN_DIR.concat("jy9.png"), JIYUN_DIR.concat("jy10.png"))
+                },
+                {
+                        List.of(JINA_DIR.concat("jina1.png"), JINA_DIR.concat("jina2.png")),
+                        List.of(JINA_DIR.concat("jina3.png")),
+                        List.of(JINA_DIR.concat("jina4.png")),
+                        List.of(JINA_DIR.concat("jina5.png")),
+                        List.of(JINA_DIR.concat("jina6.png")),
+                        List.of(JINA_DIR.concat("jina7.png")),
+                        List.of(JINA_DIR.concat("jina8.png")),
+                        List.of(JINA_DIR.concat("jina9.png")),
+                        List.of(JINA_DIR.concat("jina10.png")),
+                        List.of(JINA_DIR.concat("jina11.png"))
+                },
+                {
+                        List.of(HYEONKYO_DIR.concat("hk1.png"), HYEONKYO_DIR.concat("hk2.png")),
+                        List.of(HYEONKYO_DIR.concat("hk3.png")),
+                        List.of(HYEONKYO_DIR.concat("hk4.png")),
+                        List.of(HYEONKYO_DIR.concat("hk5.png")),
+                        List.of(HYEONKYO_DIR.concat("hk6.png")),
+                        List.of(HYEONKYO_DIR.concat("hk7.png"))
+                }
+        };
 
         //========= 저장 ============
         for (int i = 0; i < N_CASH_BOX; i++) {
             for (int j = 0; j < titles[i].length; j++) {
                 Memory memory = Memory.builder()
+                        .cashBoxId(cashBoxIdList.get(i))
                         .title(titles[i][j])
                         .content(contents[i][j])
                         .depositAmount(depositAmounts[i][j])
-                        .images(images[j])
+                        .images(images[i][j])
                         .build();
                 memoryRepository.save(memory);
             }
