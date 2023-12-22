@@ -221,8 +221,8 @@ public class DummyDataService {
         };
 
         String[][] createdAts = {
-                {"2021-02-12", "2021-03-27", "2021-05-06", "2021-06-30", "2021-12-17", "2022-02-19", "2022-04-28", "2022-06-20", "2023-01-11", "2023-03-20"},
                 {"2023-09-28", "2023-10-15", "2023-11-05", "2023-11-20", "2023-12-08"},
+                {"2021-02-12", "2021-03-27", "2021-05-06", "2021-06-30", "2021-12-17", "2022-02-19", "2022-04-28", "2022-06-20", "2023-01-11", "2023-03-20"},
                 {"2022-06-05", "2022-08-12", "2022-09-25", "2022-11-03", "2023-01-18", "2023-04-07"}
         };
 
@@ -235,7 +235,7 @@ public class DummyDataService {
                         .content(contents[i][j])
                         .depositAmount(depositAmounts[i][j])
                         .images(images[i][j])
-                        .createdAt(LocalDate.parse(createdAts[i][j], DateTimeFormatter.ISO_DATE))
+                        .createdAt(LocalDate.parse(createdAts[i][j]))
                         .build();
                 memoryRepository.save(memory);
             }
