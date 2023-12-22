@@ -11,7 +11,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 @Component
 public class UserIdArgumentResolver implements HandlerMethodArgumentResolver {
 
-    public static final String USER_ID_HEADER_KEY = "UserId";
+    public static final String USER_ID_HEADER_KEY = "User-Id";
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
