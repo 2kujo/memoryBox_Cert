@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,11 +51,11 @@ public class DummyDataService {
         String[] productNames = {"특별한 적금", "특별한 적금", "특별한 적금"};
         LocalDate[] startDates = {
                 LocalDate.of(2023, 1, 22),
-                LocalDate.of(2021, 12, 27),
+                LocalDate.of(2021, 2, 27),
                 LocalDate.of(2022, 5, 16)};
         LocalDate[] maturityDates = {
                 LocalDate.of(2024, 5, 4),
-                LocalDate.of(2023, 1, 22),
+                LocalDate.of(2023, 4, 22),
                 LocalDate.of(2024, 6, 21),};
 
         //========= 저장 ============
@@ -78,9 +79,9 @@ public class DummyDataService {
         String[] names = {"우리 지윤-어린이집", "우리 진아-유치원", "우리 현교-어린이집"};
         String[] descriptions = {"지윤이 성장일지", "귀여운 진아 유치원때", "우리현교"};
         String[] thumbnails = {
-                "https://robohash.org/nonetet.png?size=50x50&set=set1",
-                "https://robohash.org/ullamvoluptatesnihil.png?size=50x50&set=set1",
-                "https://robohash.org/minimaquiaaut.png?size=50x50&set=set1"};
+                JIYUN_DIR.concat("jy2.png"),
+                JINA_DIR.concat("jina7.png"),
+                HYEONKYO_DIR.concat("hk4.png")};
         String[] accountNums = {"21702448796571", "21702479654744", "21702446796255"};
         int[] balances = {630_000, 1011_000, 520_000};
         String[] productNames = {"특별한 적금", "특별한 적금", "특별한 적금"};
@@ -159,7 +160,7 @@ public class DummyDataService {
                 },
                 {
                         "우리 진아가 태어난 지 벌써 50일! 자는 시간이 더 많은 것 같지만 바라만 봐도 행복해~ 이 작은 존재가 우리 가정에 더 많은 기쁨과 사랑을 안겨주는 우리 복덩이 진아ㅎㅎ 진아의 평화로운 모습을 바라보면서 매 순간이 정말 소중하고 특별하다는 걸 느낄 수 있어. 앞으로도 진아와 함께하는 모든 순간이 행복으로 가득하길 기원해. \uD83C\uDF19\uD83D\uDCA4\uD83D\uDC96",
-                        "엄마 등에서 한 순간도 떨어지지 않으려고 울던 진아였는데, 어느새 혼자서도 잘 앉아있네. 성장하는 모습을 보면서 기쁨과 함께 조금은 아쉬움도 느껴지는 거 같아ㅎㅎ. 그래도 진아가 세상을 탐험하며 자신의 발자취를 남길 모습은 상상하면 기대된. 앞으로 더 많은 순간들이 기다리고 있을 테니, 진아와 함께하는 모든 순간을 소중히 간직해보자. \uD83C\uDF7C\uD83D\uDC76\uD83D\uDC95",
+                        "엄마 등에서 한 순간도 떨어지지 않으려고 울던 진아였는데, 어느새 혼자서도 잘 앉아있네. 성장하는 모습을 보면서 기쁨과 함께 조금은 아쉬움도 느껴지는 거 같아ㅎㅎ. 그래도 진아가 세상을 탐험하며 자신의 발자취를 남길 모습은 상상하면 기대된다. 앞으로 더 많은 순간들이 기다리고 있을 테니, 진아와 함께하는 모든 순간을 소중히 간직해보자. \uD83C\uDF7C\uD83D\uDC76\uD83D\uDC95",
                         "방금 전까지도 신나서 꺄르륵 웃던 진아였는데 피곤했는지 금새 자버렸네. 곤히 잘자는 진아가 너무 귀여워서 많이 찍어버렸다. 이 작은 순간들이 참 소중하고, 진아의 꿈 속에서 무엇을 꾸고 있는지 궁금해지네. 잠에서 깨어나면 또 새로운 모험과 기쁨이 기다리고 있을 텐데, 진아의 세상이 항상 밝고 행복하기를... \uD83C\uDF19\uD83D\uDCA4\uD83D\uDC96",
                         "옛날에는 뒤집기도 힘들어했던 우리 진아, 이제는 곧잘 앉아있네. 앉아있을 때 보이는 조그만한 발이 너무 귀여워♥ 성장하는 모습을 지켜보면서 얼마나 빨리 자릴 찾아가고 있는지 느낄 수 있어 기쁘고 뿌듯하다. 진아의 작은 발자국이 우리 가정에 더 많은 행복을 가져다주길 바라며, 항상 건강하게 자라나길 \uD83D\uDC63\uD83D\uDC95\uD83C\uDF1F",
                         "진아가 벌써 1살이 지났다니 믿기지가 않네. 새 옷도 너무 잘어울리고 예쁘고 귀여워♥ 성장하는 진아의 모습을 보며 시간이 얼마나 빨리 흘렀는지를 느낄 때마다 감회가 새롭다. 우리 진아 오늘도 사랑해~\uD83D\uDC76\uD83D\uDC96",
@@ -219,6 +220,12 @@ public class DummyDataService {
                 }
         };
 
+        String[][] createdAts = {
+                {"2023-09-28", "2023-10-15", "2023-11-05", "2023-11-20", "2023-12-08"},
+                {"2021-02-12", "2021-03-27", "2021-05-06", "2021-06-30", "2021-12-17", "2022-02-19", "2022-04-28", "2022-06-20", "2023-01-11", "2023-03-20"},
+                {"2022-06-05", "2022-08-12", "2022-09-25", "2022-11-03", "2023-01-18", "2023-04-07"}
+        };
+
         //========= 저장 ============
         for (int i = 0; i < N_CASH_BOX; i++) {
             for (int j = 0; j < titles[i].length; j++) {
@@ -228,6 +235,7 @@ public class DummyDataService {
                         .content(contents[i][j])
                         .depositAmount(depositAmounts[i][j])
                         .images(images[i][j])
+                        .createdAt(LocalDate.parse(createdAts[i][j]))
                         .build();
                 memoryRepository.save(memory);
             }
