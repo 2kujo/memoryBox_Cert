@@ -28,6 +28,7 @@ public class DummyDataService {
     public static final String JIYUN_DIR = "/jiyun/";
     public static final String JINA_DIR = "/jina/";
     public static final String HYEONKYO_DIR = "/hyeonkyo/";
+    public static final String MINJO_DIR = "/minjo/";
 
     private final CashBoxRepository cashBoxRepository;
     private final CoreBankRepository coreBankRepository;
@@ -46,17 +47,19 @@ public class DummyDataService {
 
     private List<Long> saveCoreBankData(Long userId) {
         //========= 더미데이터 ============
-        String[] accountNums = {"21702448796571", "21702479654744", "21702446796255"};
-        int[] bals = {630_000, 1011_000, 520_000};
-        String[] productNames = {"특별한 적금", "특별한 적금", "특별한 적금"};
+        String[] accountNums = {"21702448796571", "21702479654744", "21702446796255", "21702447952863"};
+        int[] bals = {630_000, 1011_000, 520_000, 950_000};
+        String[] productNames = {"특★한 적금", "특★한 적금", "특★한 적금", "특★한 적금"};
         LocalDate[] startDates = {
                 LocalDate.of(2023, 1, 22),
                 LocalDate.of(2021, 2, 27),
-                LocalDate.of(2022, 5, 16)};
+                LocalDate.of(2022, 5, 16),
+                LocalDate.of(2023, 1, 20)};
         LocalDate[] maturityDates = {
                 LocalDate.of(2024, 5, 4),
                 LocalDate.of(2023, 4, 22),
-                LocalDate.of(2024, 6, 21),};
+                LocalDate.of(2024, 6, 21),
+                LocalDate.of(2023, 12, 25)};
 
         //========= 저장 ============
         List<Long> coreBankIdList = new ArrayList<>();
@@ -76,25 +79,28 @@ public class DummyDataService {
 
     private List<Long> saveCashBoxData(Long userId, List<Long> coreBankIdList) {
         //========= 더미데이터 ============
-        String[] names = {"우리 지윤-어린이집", "우리 진아-유치원", "우리 현교-어린이집"};
-        String[] descriptions = {"지윤이 성장일지", "귀여운 진아 유치원때", "우리현교"};
+        String[] names = {"우리 지윤-어린이집", "우리 진아-유치원", "우리 현교-어린이집", "우리 민조-어린이집"};
+        String[] descriptions = {"지윤이 성장일지", "귀여운 진아 유치원때", "우리현교", "민조 어린이때"};
         String[] thumbnails = {
                 JIYUN_DIR.concat("jy2.png"),
                 JINA_DIR.concat("jina7.png"),
-                HYEONKYO_DIR.concat("hk4.png")};
-        String[] accountNums = {"21702448796571", "21702479654744", "21702446796255"};
-        int[] balances = {630_000, 1011_000, 520_000};
-        String[] productNames = {"특별한 적금", "특별한 적금", "특별한 적금"};
+                HYEONKYO_DIR.concat("hk4.png"),
+                MINJO_DIR.concat("mj3.png")};
+        String[] accountNums = {"21702448796571", "21702479654744", "21702446796255", "21702447952863"};
+        int[] balances = {630_000, 1011_000, 520_000, 950_000};
+        String[] productNames = {"특★한 적금", "특★한 적금", "특★한 적금", "특★한 적금"};
         LocalDate[] startDates = {
                 LocalDate.of(2023, 9, 17),
                 LocalDate.of(2021, 12, 27),
-                LocalDate.of(2022, 5, 16)};
-        boolean[] maturityEnableds = {false, true, false};
+                LocalDate.of(2022, 5, 16),
+                LocalDate.of(2023, 1, 20)};
+        boolean[] maturityEnableds = {false, true, false, true};
         LocalDate[] maturityDates = {
                 LocalDate.of(2024, 5, 4),
                 LocalDate.of(2023, 1, 22),
-                LocalDate.of(2024, 6, 21),};
-        boolean[] checkedMaturityReads = {false, true, false};
+                LocalDate.of(2024, 6, 21),
+                LocalDate.of(2023, 12, 25)};
+        boolean[] checkedMaturityReads = {false, true, false, false};
         //========= 저장 ============
         List<Long> cashBoxIdList = new ArrayList<>();
         for (int i = 0; i < N_CASH_BOX; i++) {
@@ -146,6 +152,13 @@ public class DummyDataService {
                         "빛나는 6살, 현교의 생일",
                         "설날의 멋쟁이 현교!",
                         "현교의 체육대회~"
+                },
+                {
+                    "민조 완전 애기때!",
+                        "치과도 잘가는 민조",
+                        "민조의 첫 학예회",
+                        "민조와 썰매장~",
+                        "민조 현장체험학습!"
 
                 }
         };
@@ -177,6 +190,13 @@ public class DummyDataService {
                         "벌써 현교의 6번째 생일이네. 시간이 너무너무 빠르다. 유치원에서 생일 파티로 현교가 좋아하는 초코 케이크도 먹고 맛있었겠다! \uD83C\uDF82 초를 불때 무슨 소원을 빌었을까? 엄마는 궁금하네ㅎㅎ 현교의 소원이 이루어졌으면 좋겠다~ 앞으로의 날들도 항상 건강하고 행복하기를 기도할게! \uD83C\uDF89\uD83D\uDC66\uD83D\uDC96",
                         "설날 예쁜 한복 입고 오랜만에 친가 내려가서 찍은 사진 한방! 두손 가지런히 모아서 예의 바르게 인사도 잘하고! 역시 우리 기특한 현교야 멋있어!! \uD83C\uDF8A\uD83D\uDC66\uD83C\uDF1F 현교와 함께 행복한 설 명절을 보내서 엄마는 더 행복해~ 앞으로도 현교와 함께하는 모든 순간이 행복하길 바라며, 건강하게 자라나기를 기대해. 새해 복 많이 받아! \uD83C\uDF89\uD83C\uDF87\uD83C\uDF86",
                         "유치원 운동회때 웃고있는 사진 한컷! 예쁜 체육복 입은 현교 모습 한번 찍고 싶었는데 카메라를 갖다대니 씨익 하고 웃는 현교ㅋㅋㅋㅋ 어디서 배운 표정인지 너무 귀엽다 ㅎㅎ 달리기도 열심히 하고 체육대회에서 제일 빛나는건 역시 우리 현교였어!! 맛있는 간식도 많이 먹고 행복한 하루였다~ \uD83C\uDFC3\u200D♂️\uD83D\uDC66\uD83C\uDF1F 현교의 밝은 에너지로 운동회가 더욱 활기차 보였던 것 같아. 앞으로도 건강하고 즐거운 순간들이 많아지길! \uD83D\uDE0A\uD83C\uDF89✨"
+                },
+                {
+                    "오랜만에 사진첩을 보다 민조 어릴때 사진을 발견했다. 진작 이 서비스를 썼었으면 좋았었을텐데 아쉽네.. 앞으로 많이 많이 더 추억을 기록해줄게~ 언제나 사랑해~\uD83D\uDCF8\uD83D\uDC96",
+                    "치과가는건 항상 무서워 하지만 그래도 대견하게 안 울고 진료 잘 받는 우리 민조! 이빨 뺄 때도 무서워 했지만 울지도 않고ㅎㅎ 엄마는 민조가 대견해! 앞으로도 항상 민조가 건강했으면...\uD83D\uDE0A\uD83D\uDC66\uD83D\uDC96",
+                    "오늘은 민조의 첫 학예회날. 민조가 어떤 모습을 보여줄까 많이 설레기도 하면서 잘 할까 걱정도 있었는데 너무너무 잘해서 멋있었어!! 엄마는 민조를 믿고 있었어ㅎㅎ 열심히 장구도 치고 멋있는 옷도 있고 너무 멋있다 민조야! 앞으로 더 많은 무대에서 민조의 빛나는 모습을 기대할게!",
+                    "오늘은 처음으로 에버랜드 썰매장에 갔어. 항상 눈오는 날을 좋아하던 민조!! 바빠서 그동안 에버랜드 썰매장은 못갔는데 오늘 드디어 민조의 소원을 이뤄줄 수 있어서 기쁘다. 신나서 계속계속 타는 모습에 다치진 않을까 걱정했는데 신나하는 모습을 보니까 엄마가 다 기쁘네ㅎㅎ 진작 올걸 그랬나보다. 앞으로는 더 자주 오자!♥",
+                        "민조 체험학습날 선생님이 찍어준 사진ㅎㅎ 너무 귀엽다. 엄마아빠 없이 처음으로 간 놀이공원인데도 신났는지 집에 오자마자 쉴새 없이 오늘 있던 일을 말해준 우리 민조! 엄마는 살짝 질투날 뻔했지만 민조가 신나고 행복해하는걸 보는 것 만으로도 엄마는 행복해. 다음 현장체험학습 갈때도 다치지말고 재밌게 놀고와!\uD83D\uDE04\uD83C\uDF1F\uD83C\uDF89"
                 }
         };
         int[][] depositAmounts = {
@@ -187,7 +207,10 @@ public class DummyDataService {
                     120_000, 130_000, 55_000, 78_000, 150_000, 170_000, 95_000, 45_000, 78_000, 90_000
                 },
                 {
-                    150_000, 60_000, 70_000, 120_000, 70_000, 50_000,
+                    150_000, 60_000, 70_000, 120_000, 70_000, 50_000
+                },
+                {
+                    100_000, 50_000, 80_000, 30_000, 50_000, 90_000
                 }
         };
         List[][] images = {
@@ -217,13 +240,21 @@ public class DummyDataService {
                         List.of(HYEONKYO_DIR.concat("hk5.png")),
                         List.of(HYEONKYO_DIR.concat("hk6.png")),
                         List.of(HYEONKYO_DIR.concat("hk7.png"))
+                },
+                {
+                    List.of(MINJO_DIR.concat("mj1.png")),
+                        List.of(MINJO_DIR.concat("mj2.png")),
+                        List.of(MINJO_DIR.concat("mj3.png")),
+                        List.of(MINJO_DIR.concat("mj4.png")),
+                        List.of(MINJO_DIR.concat("mj5.png")),
                 }
         };
 
         String[][] createdAts = {
                 {"2023-09-28", "2023-10-15", "2023-11-05", "2023-11-20", "2023-12-08"},
                 {"2021-02-12", "2021-03-27", "2021-05-06", "2021-06-30", "2021-12-17", "2022-02-19", "2022-04-28", "2022-06-20", "2023-01-11", "2023-03-20"},
-                {"2022-06-05", "2022-08-12", "2022-09-25", "2022-11-03", "2023-01-18", "2023-04-07"}
+                {"2022-06-05", "2022-08-12", "2022-09-25", "2022-11-03", "2023-01-18", "2023-04-07"},
+                {"2023-02-05", "2023-03-11", "2023-08-15", "2023-12-02", "2023-12-15"}
         };
 
         //========= 저장 ============
