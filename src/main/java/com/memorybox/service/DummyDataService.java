@@ -22,8 +22,8 @@ import java.util.List;
 @Service
 public class DummyDataService {
 
-    public static final int N_CASH_BOX = 3;
-    public static final int N_CORE_BANK = 3;
+    public static final int N_CASH_BOX = 4;
+    public static final int N_CORE_BANK = 4;
 
     public static final String JIYUN_DIR = "/jiyun/";
     public static final String JINA_DIR = "/jina/";
