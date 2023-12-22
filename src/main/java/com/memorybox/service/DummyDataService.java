@@ -7,6 +7,7 @@ import com.memorybox.domain.corebank.repository.CoreBankRepository;
 import com.memorybox.domain.memory.entity.Memory;
 import com.memorybox.domain.memory.repository.MemoryRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class DummyDataService {
@@ -34,8 +36,11 @@ public class DummyDataService {
     @Transactional
     public void saveDummyData(Long userId) {
         List<Long> coreBankIdList = saveCoreBankData(userId);
+        log.info(" Finish CoreBank Save");
         List<Long> cashBoxIdList = saveCashBoxData(userId, coreBankIdList);
+        log.info(" Finish CashBox Save");
         saveMemoryData(cashBoxIdList);
+        log.info(" Finish Memory Save");
     }
 
     private List<Long> saveCoreBankData(Long userId) {

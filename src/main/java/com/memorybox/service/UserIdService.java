@@ -4,16 +4,18 @@ import com.memorybox.domain.user.entity.User;
 import com.memorybox.domain.user.repository.UserRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class UserIdService {
     private static final long START_REGISTERED_USER_NUM = 1L;
-    private static final long END_REGISTERED_USER_NUM = 2L;
+    private static final long END_REGISTERED_USER_NUM = 30L;
 
     private final ConcurrentLinkedQueue<Long> userIdQueue = new ConcurrentLinkedQueue<>();
 
@@ -23,7 +25,6 @@ public class UserIdService {
 
     @PostConstruct
     private void init() {
-        //더미 유저 ID값을 Queue에 넣어주기
         for (long userId = START_REGISTERED_USER_NUM; userId <= END_REGISTERED_USER_NUM; userId++) {
             userIdQueue.offer(userId);
         }
@@ -32,6 +33,7 @@ public class UserIdService {
     @Transactional
     public String getUserId() {
         if (userIdQueue.isEmpty()) {
+            log.info(" Make New User");
             Long userId = userRepository.save(new User()).getId();
             dummyDataService.saveDummyData(userId);
             return userId.toString();
