@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 @Service
 public class UserIdService {
     private static final long START_REGISTERED_USER_NUM = 1L;
-    private static final long END_REGISTERED_USER_NUM = 10L;
+    private static final long END_REGISTERED_USER_NUM = 0L;
 
     private final ConcurrentLinkedQueue<Long> userIdQueue = new ConcurrentLinkedQueue<>();
 

@@ -70,7 +70,7 @@ public class DummyDataService {
 
     private List<Long> saveCashBoxData(Long userId, List<Long> coreBankIdList) {
         //========= 더미데이터 ============
-        String[] names = {"우리 지윤-어린이집", "우리 진아-유치원", "우리현교 - 어린이집"};
+        String[] names = {"우리 지윤-어린이집", "우리 진아-유치원", "우리 현교-어린이집"};
         String[] descriptions = {"지윤이 성장일지", "귀여운 진아 유치원때", "우리현교"};
         String[] thumbnails = {
                 "https://robohash.org/nonetet.png?size=50x50&set=set1",
@@ -80,7 +80,7 @@ public class DummyDataService {
         int[] balances = {630_000, 1011_000, 520_000};
         String[] productNames = {"특별한 적금", "특별한 적금", "특별한 적금"};
         LocalDate[] startDates = {
-                LocalDate.of(2023, 1, 22),
+                LocalDate.of(2023, 9, 17),
                 LocalDate.of(2021, 12, 27),
                 LocalDate.of(2022, 5, 16)};
         boolean[] maturityEnableds = {false, true, false};
