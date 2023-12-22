@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,16 +40,16 @@ public class Memory {
     @OrderColumn(name = "line_idx")
     private List<Image> images;
 
-    @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime createdAt;
+    @Column
+    private LocalDate createdAt;
 
     @Builder
-    public Memory(long cashBoxId, String title, String content, int depositAmount, List<String> images) {
+    public Memory(long cashBoxId, String title, String content, int depositAmount, List<String> images, LocalDate createdAt) {
         this.cashBoxId = cashBoxId;
         this.title = title;
         this.content = content;
         this.depositAmount = depositAmount;
+        this.createdAt = createdAt;
         saveImages(images);
     }
 
