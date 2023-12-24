@@ -57,9 +57,9 @@ public class DummyDataService {
                 LocalDate.of(2023, 1, 20)};
         LocalDate[] maturityDates = {
                 LocalDate.of(2024, 5, 4),
-                LocalDate.of(2023, 4, 22),
+                LocalDate.of(2023, 12, 22),
                 LocalDate.of(2024, 6, 21),
-                LocalDate.of(2023, 12, 25)};
+                LocalDate.of(2023, 12, 2)};
 
         //========= 저장 ============
         List<Long> coreBankIdList = new ArrayList<>();
@@ -79,13 +79,13 @@ public class DummyDataService {
 
     private List<Long> saveCashBoxData(Long userId, List<Long> coreBankIdList) {
         //========= 더미데이터 ============
-        String[] names = {"우리 지윤-어린이집", "우리 진아-유치원", "우리 현교-어린이집", "우리 민조-어린이집"};
+        String[] names = {"우리 지윤-유치원", "우리 진아-영아기", "우리 현교-유치원", "우리 민조-유치원"};
         String[] descriptions = {"지윤이 성장일지", "귀여운 진아 유치원때", "우리현교", "민조 어린이때"};
         String[] thumbnails = {
                 JIYUN_DIR.concat("jy2.png"),
                 JINA_DIR.concat("jina7.png"),
                 HYEONKYO_DIR.concat("hk4.png"),
-                MINJO_DIR.concat("mj3.png")};
+                MINJO_DIR.concat("mj4.png")};
         String[] accountNums = {"21702448796571", "21702479654744", "21702446796255", "21702447952863"};
         int[] balances = {630_000, 1011_000, 520_000, 950_000};
         String[] productNames = {"특★한 적금", "특★한 적금", "특★한 적금", "특★한 적금"};
@@ -97,10 +97,10 @@ public class DummyDataService {
         boolean[] maturityEnableds = {false, true, false, true};
         LocalDate[] maturityDates = {
                 LocalDate.of(2024, 5, 4),
-                LocalDate.of(2023, 1, 22),
+                LocalDate.of(2023, 12, 22),
                 LocalDate.of(2024, 6, 21),
-                LocalDate.of(2023, 12, 25)};
-        boolean[] checkedMaturityReads = {false, true, false, false};
+                LocalDate.of(2023, 12, 2)};
+        boolean[] checkedMaturityReads = {false, false, false, true};
         //========= 저장 ============
         List<Long> cashBoxIdList = new ArrayList<>();
         for (int i = 0; i < N_CASH_BOX; i++) {
@@ -254,7 +254,7 @@ public class DummyDataService {
                 {"2023-09-28", "2023-10-15", "2023-11-05", "2023-11-20", "2023-12-08"},
                 {"2021-02-12", "2021-03-27", "2021-05-06", "2021-06-30", "2021-12-17", "2022-02-19", "2022-04-28", "2022-06-20", "2023-01-11", "2023-03-20"},
                 {"2022-06-05", "2022-08-12", "2022-09-25", "2022-11-03", "2023-01-18", "2023-04-07"},
-                {"2023-02-05", "2023-03-11", "2023-08-15", "2023-12-02", "2023-12-15"}
+                {"2023-02-05", "2023-03-11", "2023-08-15", "2023-11-30", "2023-12-1"}
         };
 
         //========= 저장 ============
