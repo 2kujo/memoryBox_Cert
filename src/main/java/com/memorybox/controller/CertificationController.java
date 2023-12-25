@@ -1,5 +1,6 @@
 package com.memorybox.controller;
 
+import com.memorybox.dto.request.DummyRequestDto;
 import com.memorybox.dto.response.UserIdResponseDto;
 import com.memorybox.service.UserIdService;
 import lombok.RequiredArgsConstructor;
@@ -27,9 +28,9 @@ public class CertificationController {
     }
 
     @PostMapping("/dummy")
-    public ResponseEntity<?> createDummyData(@RequestBody int n) {
-        if (n <= 50) {
-            userIdService.makeUserAndDummy(n);
+    public ResponseEntity<?> createDummyData(@RequestBody DummyRequestDto dummyRequestDto) {
+        if (dummyRequestDto.n() <= 50) {
+            userIdService.makeUserAndDummy(dummyRequestDto.n());
         }
         return ResponseEntity.ok().build();
     }
