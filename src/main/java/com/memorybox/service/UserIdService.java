@@ -41,4 +41,11 @@ public class UserIdService {
         return userIdQueue.poll().toString();
     }
 
+    @Transactional
+    public void makeUserAndDummy(int n) {
+        for (int i = 0; i < n; i++) {
+            Long userId = userRepository.save(new User()).getId();
+            dummyDataService.saveDummyData(userId);
+        }
+    }
 }
