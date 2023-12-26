@@ -22,6 +22,7 @@ public class CertificationController {
     public ResponseEntity<?> createCert() {
         log.info(" [REQUEST] createCert Call");
         String userId = userIdService.getUserId();
+        log.info(" [RESPONSE] UserId = {}", userId);
 
         return ResponseEntity.ok()
                 .body(new UserIdResponseDto(userId));
